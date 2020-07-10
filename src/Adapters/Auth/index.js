@@ -1,6 +1,7 @@
 import loadAdapter from '../AdapterLoader';
 
 const apple = require('./apple');
+const discord = require('./discord');
 const gcenter = require('./gcenter');
 const gpgames = require('./gpgames');
 const facebook = require('./facebook');
@@ -36,6 +37,7 @@ const anonymous = {
 
 const providers = {
   apple,
+  discord,
   gcenter,
   gpgames,
   facebook,
@@ -62,7 +64,7 @@ const providers = {
 };
 
 function authDataValidator(adapter, appIds, options) {
-  return function(authData) {
+  return function (authData) {
     return adapter.validateAuthData(authData, options).then(() => {
       if (appIds) {
         return adapter.validateAppId(appIds, authData, options);
@@ -98,7 +100,7 @@ function loadAuthAdapter(provider, authOptions) {
       providerOptions
     );
     if (optionalAdapter) {
-      ['validateAuthData', 'validateAppId'].forEach(key => {
+      ['validateAuthData', 'validateAppId'].forEach((key) => {
         if (optionalAdapter[key]) {
           adapter[key] = optionalAdapter[key];
         }
@@ -117,13 +119,13 @@ function loadAuthAdapter(provider, authOptions) {
   return { adapter, appIds, providerOptions };
 }
 
-module.exports = function(authOptions = {}, enableAnonymousUsers = true) {
+module.exports = function (authOptions = {}, enableAnonymousUsers = true) {
   let _enableAnonymousUsers = enableAnonymousUsers;
-  const setEnableAnonymousUsers = function(enable) {
+  const setEnableAnonymousUsers = function (enable) {
     _enableAnonymousUsers = enable;
   };
   // To handle the test cases on configuration
-  const getValidatorForProvider = function(provider) {
+  const getValidatorForProvider = function (provider) {
     if (provider === 'anonymous' && !_enableAnonymousUsers) {
       return;
     }
