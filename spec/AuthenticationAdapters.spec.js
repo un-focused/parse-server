@@ -1561,7 +1561,7 @@ describe('Apple Game Center Auth adapter', () => {
 });
 
 describe('apple discord auth adapter', () => {
-  const apple = require('../lib/Adapters/Auth/discord');
+  const apple = require('../lib/Adapters/Auth/apple');
   const jwt = require('jsonwebtoken');
   const util = require('util');
 

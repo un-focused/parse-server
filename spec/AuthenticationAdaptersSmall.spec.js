@@ -67,7 +67,7 @@ describe('AuthenticationProviders', function () {
     });
 
     it(`should provide the right responses for adapter ${providerName}`, async () => {
-      const noResponse = ['twitter', 'apple', 'discord', 'gcenter'];
+      const noResponse = ['twitter', 'apple', 'discord', 'twitter', 'gcenter'];
       if (noResponse.includes(providerName)) {
         return;
       }
@@ -470,6 +470,21 @@ describe('discord auth adapter', () => {
 
   it('should work', async (done) => {
     await discord.validateAuthData(
+      {
+        id: '',
+        token: 'GJdchHVde2Qb2sUd8gHkFyDftZMTTJ',
+      },
+      {}
+    );
+    done();
+  });
+});
+
+describe('twitch auth adapter', () => {
+  const twitch = require('../lib/Adapters/Auth/twitch');
+
+  it('should work', async (done) => {
+    await twitch.validateAuthData(
       {
         id: '700882851373121626',
         token: 'GJdchHVde2Qb2sUd8gHkFyDftZMTTJ',

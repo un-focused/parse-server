@@ -18,19 +18,6 @@ function validateAuthToken(id, token) {
 function validateAuthData(authData, options = {}) {
   console.log(options);
   const { id, token } = authData;
-  // const { clientId } = options;
-
-  // try {
-  //     jwtClaims = jwt.verify(token, signingKey, {
-  //       algorithms: algorithm,
-  //       // the audience can be checked against a string, a regular expression or a list of strings and/or regular expressions.
-  //       audience: clientId,
-  //     });
-  //   } catch (exception) {
-  //     const message = exception.message;
-
-  //     throw new Parse.Error(Parse.Error.OBJECT_NOT_FOUND, `${message}`);
-  // }
 
   return validateAuthToken(id, token).then(() => {
     // validation worked

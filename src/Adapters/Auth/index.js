@@ -13,6 +13,7 @@ const google = require('./google');
 const github = require('./github');
 const twitter = require('./twitter');
 const spotify = require('./spotify');
+const twitch = require('./twitch');
 const digits = require('./twitter'); // digits tokens are validated by twitter
 const janrainengage = require('./janrainengage');
 const janraincapture = require('./janraincapture');
@@ -48,6 +49,7 @@ const providers = {
   google,
   github,
   twitter,
+  twitch,
   spotify,
   anonymous,
   digits,
