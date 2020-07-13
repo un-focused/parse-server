@@ -78,6 +78,7 @@ function authDataValidator(adapter, appIds, options) {
 
 function loadAuthAdapter(provider, authOptions) {
   let defaultAdapter = providers[provider];
+  console.log('default adapter', defaultAdapter);
   const providerOptions = authOptions[provider];
   if (
     providerOptions &&

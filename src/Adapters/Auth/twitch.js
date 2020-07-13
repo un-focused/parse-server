@@ -19,6 +19,8 @@ function validateAuthToken(id, token) {
   });
 }
 
+// TODO: add config ability to parse-server settings, through options
+// in function below
 // Returns a promise that fulfills if this id token is valid
 function validateAuthData(authData, options = {}) {
   const { id, token } = authData;
