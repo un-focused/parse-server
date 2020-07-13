@@ -23,9 +23,8 @@ function validateAuthToken(id, token) {
 // in function below
 // Returns a promise that fulfills if this id token is valid
 function validateAuthData(authData, options = {}) {
-  const { id, token } = authData;
-
   console.log(options);
+  const { id, token } = authData;
 
   return validateAuthToken(id, token).then(() => {
     // validation worked
