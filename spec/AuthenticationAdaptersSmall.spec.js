@@ -486,11 +486,11 @@ describe('twitch auth adapter', () => {
   it('should work', async (done) => {
     await twitch.validateAuthData(
       {
-        id: '700882851373121626',
-        token: 'GJdchHVde2Qb2sUd8gHkFyDftZMTTJ',
+        id: '',
+        token: '',
       },
       {
-        clientId: '730614775620436009',
+        clientId: '',
       }
     );
     done();

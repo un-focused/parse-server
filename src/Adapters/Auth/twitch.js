@@ -1,8 +1,9 @@
 const Parse = require('parse/node').Parse;
 const https = require('https');
 
-function validateAuthToken(id, token) {
-  return buildRequest('users', token).then((response) => {
+function validateAuthToken(id, token, clientID) {
+  return buildRequest('users', token, clientID).then((response) => {
+    console.log('response', response);
     if (
       response &&
       response.data &&
@@ -23,10 +24,10 @@ function validateAuthToken(id, token) {
 // in function below
 // Returns a promise that fulfills if this id token is valid
 function validateAuthData(authData, options = {}) {
-  console.log(options);
   const { id, token } = authData;
+  const { clientID } = options;
 
-  return validateAuthToken(id, token).then(() => {
+  return validateAuthToken(id, token, clientID).then(() => {
     // validation worked
     return;
   });
@@ -37,7 +38,7 @@ function validateAppId() {
   return Promise.resolve();
 }
 
-function buildRequest(path, token) {
+function buildRequest(path, token, clientID) {
   return new Promise((resolve, reject) => {
     const request = https
       .request(
@@ -46,6 +47,7 @@ function buildRequest(path, token) {
           path: `/helix/${path}`,
           method: 'GET',
           headers: {
+            'client-id': clientID,
             Authorization: `Bearer ${token}`,
           },
         },
